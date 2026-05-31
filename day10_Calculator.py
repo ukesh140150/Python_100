@@ -6,6 +6,8 @@ def multiply(n1, n2):
     return n1 * n2
 def divide(n1, n2):
     return n1 / n2
+def avg(n1,n2,n3):
+    return (n1+n1+n3)/3
 def calculator():
     logo = r"""
      _____________________
@@ -24,7 +26,7 @@ def calculator():
     |_____________________|
     """
     print(logo)
-    opperations ={ "+": add,"-": subtract,"*": multiply,"/": divide}
+    opperations ={ "+": add,"-": subtract,"*": multiply,"/": divide,"a":avg}
     choice=True
     num1 = float(input("Enter a number: "))
     while choice :
@@ -32,12 +34,22 @@ def calculator():
         +
         -
         *
+        a
         /
         """)
         opperation_symbol=input("Enter an operation: ")
-        num2 = float(input("Enter another number: "))
-        answer =opperations[opperation_symbol](num1, num2)
-        print (f"{num1} {opperation_symbol} {num2} = {answer}")
+        num2 = float(input("Enter second number: "))
+        if opperation_symbol not in opperations.keys():
+            print("Invalid operation")
+            continue
+        elif opperation_symbol.lower()=="a":
+            n3=int(input("Enter another number: "))
+            answer = opperations[opperation_symbol](num1, num2, n3)
+            print(f"({num1} + {num2}+ {n3})/3 = {answer}")
+
+        else:
+            answer =opperations[opperation_symbol](num1, num2,)
+            print (f"{num1} {opperation_symbol} {num2} = {answer}")
 
         continue_choice=input(f"Enter y to continue with {answer} or n to start to new calculation : ")
         if continue_choice.lower()=="y":
